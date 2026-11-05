@@ -1,0 +1,136 @@
+{
+    "initialization": {
+        "result_type": "ready",
+        "knowledge_revision": 0
+    },
+    "responses": [
+        {
+            "result_type": "context_ready",
+            "knowledge_revision": 0,
+            "context_id": "c1"
+        },
+        {
+            "result_type": "selected",
+            "knowledge_revision": 0,
+            "context_id": "c1",
+            "choice_id": "choice-1",
+            "reason": "local_unvisited_action",
+            "rankings": [
+                {
+                    "choice_id": "choice-1",
+                    "match": "matched",
+                    "eligible": true,
+                    "count_scope": "abstract_action",
+                    "recorded_executions": 0,
+                    "status_counts": {
+                        "completed": 0,
+                        "failed": 0,
+                        "incomplete": 0,
+                        "awaiting_execution_result": 0,
+                        "awaiting_resulting_observation": 0
+                    },
+                    "supporting_executions": []
+                },
+                {
+                    "choice_id": "choice-2",
+                    "match": "matched",
+                    "eligible": true,
+                    "count_scope": "abstract_action",
+                    "recorded_executions": 0,
+                    "status_counts": {
+                        "completed": 0,
+                        "failed": 0,
+                        "incomplete": 0,
+                        "awaiting_execution_result": 0,
+                        "awaiting_resulting_observation": 0
+                    },
+                    "supporting_executions": []
+                }
+            ],
+            "asm_index": 0
+        },
+        {
+            "result_type": "execution_started",
+            "knowledge_revision": 0,
+            "execution": {
+                "source": "live",
+                "run": "run",
+                "execution": "e1"
+            },
+            "context_id": "c1"
+        },
+        {
+            "result_type": "no_action",
+            "knowledge_revision": 0,
+            "context_id": "c1",
+            "reason": "execution_in_progress",
+            "rankings": [],
+            "asm_index": 0
+        },
+        {
+            "result_type": "execution_updated",
+            "knowledge_revision": 1,
+            "execution": {
+                "source": "live",
+                "run": "run",
+                "execution": "e1"
+            },
+            "status": "awaiting_execution_result",
+            "changed": true
+        },
+        {
+            "result_type": "no_action",
+            "knowledge_revision": 1,
+            "context_id": "c1",
+            "reason": "execution_in_progress",
+            "rankings": [],
+            "asm_index": 0
+        },
+        {
+            "result_type": "execution_updated",
+            "knowledge_revision": 2,
+            "execution": {
+                "source": "live",
+                "run": "run",
+                "execution": "e1"
+            },
+            "status": "awaiting_resulting_observation",
+            "changed": true
+        },
+        {
+            "result_type": "execution_updated",
+            "knowledge_revision": 3,
+            "execution": {
+                "source": "live",
+                "run": "run",
+                "execution": "e1"
+            },
+            "status": "completed",
+            "changed": true
+        },
+        {
+            "result_type": "execution_updated",
+            "knowledge_revision": 3,
+            "execution": {
+                "source": "live",
+                "run": "run",
+                "execution": "e1"
+            },
+            "status": "completed",
+            "changed": false
+        },
+        {
+            "result_type": "context_ready",
+            "knowledge_revision": 3,
+            "context_id": "c2"
+        },
+        {
+            "result_type": "no_action",
+            "knowledge_revision": 3,
+            "context_id": "c2",
+            "reason": "action_limit_reached",
+            "rankings": [],
+            "asm_index": 0
+        }
+    ]
+}

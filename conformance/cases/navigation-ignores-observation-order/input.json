@@ -1,0 +1,417 @@
+{
+    "configuration": {
+        "abstraction": {
+            "version": 1,
+            "name": "Page and action name",
+            "state": [
+                {
+                    "name": "page",
+                    "keys": [
+                        "app.page"
+                    ],
+                    "required": true
+                }
+            ],
+            "capture": "ignore",
+            "actions": {
+                "target": [
+                    {
+                        "name": "name",
+                        "keys": [
+                            "ui.name"
+                        ],
+                        "required": true,
+                        "transforms": [
+                            {
+                                "op": "trim"
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        "asms": [
+            {
+                "name": "unvisited",
+                "action_limit": 100,
+                "unmatched_choices": "exclude"
+            }
+        ]
+    },
+    "evidence_sets": {
+        "initial": {
+            "sources": [
+                {
+                    "id": "live",
+                    "label": "live",
+                    "fingerprint": "a18efa36b0c0e787fd677b073fb492bf76b0615c22892bdb81289d331d85a98a",
+                    "evidence": {
+                        "runs": [
+                            {
+                                "id": "run",
+                                "producer": "generic",
+                                "source_run": "live",
+                                "properties": {},
+                                "status": "running",
+                                "reason": null
+                            }
+                        ],
+                        "sequences": [
+                            {
+                                "id": "sequence",
+                                "test_run": "run",
+                                "sequence_index": 1,
+                                "source_sequence": "sequence",
+                                "properties": {},
+                                "status": "running",
+                                "reason": null
+                            }
+                        ],
+                        "observations": [
+                            {
+                                "id": "current",
+                                "test_sequence": "sequence",
+                                "observation_index": 1,
+                                "timestamp_micros": 1,
+                                "recorded_state": {
+                                    "id": "current:state",
+                                    "properties": {
+                                        "app.page": "A"
+                                    },
+                                    "capture": "filtered",
+                                    "widgets": [
+                                        {
+                                            "id": "w:stay-a",
+                                            "parent": null,
+                                            "properties": {
+                                                "ui.name": "stay-a"
+                                            }
+                                        }
+                                    ]
+                                },
+                                "available_action_scope": "eligible",
+                                "available_actions": [
+                                    {
+                                        "action_description": "stay-a",
+                                        "target_widget": "w:stay-a"
+                                    }
+                                ],
+                                "artifacts": []
+                            }
+                        ],
+                        "actions": [
+                            {
+                                "id": "stay-a",
+                                "action_type": "click",
+                                "properties": {}
+                            }
+                        ],
+                        "executions": []
+                    }
+                },
+                {
+                    "id": "history",
+                    "label": "history",
+                    "fingerprint": "385dc63a106433b48215de6ae9b823c73a6e0f4441f0607c6a83741e2f13d29b",
+                    "evidence": {
+                        "runs": [
+                            {
+                                "id": "run",
+                                "producer": "generic",
+                                "source_run": "history",
+                                "properties": {},
+                                "status": "finished",
+                                "reason": null
+                            }
+                        ],
+                        "sequences": [
+                            {
+                                "id": "edge-1",
+                                "test_run": "run",
+                                "sequence_index": 1,
+                                "source_sequence": "edge-1",
+                                "properties": {},
+                                "status": "finished",
+                                "reason": null
+                            },
+                            {
+                                "id": "known:A",
+                                "test_run": "run",
+                                "sequence_index": 2,
+                                "source_sequence": "known:A",
+                                "properties": {},
+                                "status": "finished",
+                                "reason": null
+                            },
+                            {
+                                "id": "known:B",
+                                "test_run": "run",
+                                "sequence_index": 3,
+                                "source_sequence": "known:B",
+                                "properties": {},
+                                "status": "finished",
+                                "reason": null
+                            },
+                            {
+                                "id": "order-only",
+                                "test_run": "run",
+                                "sequence_index": 4,
+                                "source_sequence": "order-only",
+                                "properties": {},
+                                "status": "finished",
+                                "reason": null
+                            }
+                        ],
+                        "observations": [
+                            {
+                                "id": "e1:from",
+                                "test_sequence": "edge-1",
+                                "observation_index": 1,
+                                "timestamp_micros": 1,
+                                "recorded_state": {
+                                    "id": "e1:from:state",
+                                    "properties": {
+                                        "app.page": "A"
+                                    },
+                                    "capture": "filtered",
+                                    "widgets": [
+                                        {
+                                            "id": "w:stay-a",
+                                            "parent": null,
+                                            "properties": {
+                                                "ui.name": "stay-a"
+                                            }
+                                        }
+                                    ]
+                                },
+                                "available_action_scope": "eligible",
+                                "available_actions": [
+                                    {
+                                        "action_description": "stay-a",
+                                        "target_widget": "w:stay-a"
+                                    }
+                                ],
+                                "artifacts": []
+                            },
+                            {
+                                "id": "e1:to",
+                                "test_sequence": "edge-1",
+                                "observation_index": 2,
+                                "timestamp_micros": 2,
+                                "recorded_state": {
+                                    "id": "e1:to:state",
+                                    "properties": {
+                                        "app.page": "A"
+                                    },
+                                    "capture": "filtered",
+                                    "widgets": [
+                                        {
+                                            "id": "w:stay-a",
+                                            "parent": null,
+                                            "properties": {
+                                                "ui.name": "stay-a"
+                                            }
+                                        }
+                                    ]
+                                },
+                                "available_action_scope": "eligible",
+                                "available_actions": [
+                                    {
+                                        "action_description": "stay-a",
+                                        "target_widget": "w:stay-a"
+                                    }
+                                ],
+                                "artifacts": []
+                            },
+                            {
+                                "id": "known:A",
+                                "test_sequence": "known:A",
+                                "observation_index": 1,
+                                "timestamp_micros": 1,
+                                "recorded_state": {
+                                    "id": "known:A:state",
+                                    "properties": {
+                                        "app.page": "A"
+                                    },
+                                    "capture": "filtered",
+                                    "widgets": [
+                                        {
+                                            "id": "w:stay-a",
+                                            "parent": null,
+                                            "properties": {
+                                                "ui.name": "stay-a"
+                                            }
+                                        }
+                                    ]
+                                },
+                                "available_action_scope": "eligible",
+                                "available_actions": [
+                                    {
+                                        "action_description": "stay-a",
+                                        "target_widget": "w:stay-a"
+                                    }
+                                ],
+                                "artifacts": []
+                            },
+                            {
+                                "id": "known:B",
+                                "test_sequence": "known:B",
+                                "observation_index": 1,
+                                "timestamp_micros": 1,
+                                "recorded_state": {
+                                    "id": "known:B:state",
+                                    "properties": {
+                                        "app.page": "B"
+                                    },
+                                    "capture": "filtered",
+                                    "widgets": [
+                                        {
+                                            "id": "w:new-b",
+                                            "parent": null,
+                                            "properties": {
+                                                "ui.name": "new-b"
+                                            }
+                                        }
+                                    ]
+                                },
+                                "available_action_scope": "eligible",
+                                "available_actions": [
+                                    {
+                                        "action_description": "new-b",
+                                        "target_widget": "w:new-b"
+                                    }
+                                ],
+                                "artifacts": []
+                            },
+                            {
+                                "id": "ordered-1",
+                                "test_sequence": "order-only",
+                                "observation_index": 1,
+                                "timestamp_micros": 1,
+                                "recorded_state": {
+                                    "id": "ordered-1:state",
+                                    "properties": {
+                                        "app.page": "A"
+                                    },
+                                    "capture": "filtered",
+                                    "widgets": [
+                                        {
+                                            "id": "w:stay-a",
+                                            "parent": null,
+                                            "properties": {
+                                                "ui.name": "stay-a"
+                                            }
+                                        }
+                                    ]
+                                },
+                                "available_action_scope": "eligible",
+                                "available_actions": [
+                                    {
+                                        "action_description": "stay-a",
+                                        "target_widget": "w:stay-a"
+                                    }
+                                ],
+                                "artifacts": []
+                            },
+                            {
+                                "id": "ordered-2",
+                                "test_sequence": "order-only",
+                                "observation_index": 2,
+                                "timestamp_micros": 2,
+                                "recorded_state": {
+                                    "id": "ordered-2:state",
+                                    "properties": {
+                                        "app.page": "B"
+                                    },
+                                    "capture": "filtered",
+                                    "widgets": [
+                                        {
+                                            "id": "w:new-b",
+                                            "parent": null,
+                                            "properties": {
+                                                "ui.name": "new-b"
+                                            }
+                                        }
+                                    ]
+                                },
+                                "available_action_scope": "eligible",
+                                "available_actions": [
+                                    {
+                                        "action_description": "new-b",
+                                        "target_widget": "w:new-b"
+                                    }
+                                ],
+                                "artifacts": []
+                            }
+                        ],
+                        "actions": [
+                            {
+                                "id": "new-b",
+                                "action_type": "click",
+                                "properties": {}
+                            },
+                            {
+                                "id": "stay-a",
+                                "action_type": "click",
+                                "properties": {}
+                            }
+                        ],
+                        "executions": [
+                            {
+                                "execution": {
+                                    "id": "e1",
+                                    "test_sequence": "edge-1",
+                                    "source_observation": "e1:from",
+                                    "action_description": "stay-a",
+                                    "target_widget": "w:stay-a",
+                                    "parameters": {}
+                                },
+                                "status": "completed",
+                                "executionResult": {
+                                    "action_execution": "e1",
+                                    "outcome": "returned",
+                                    "error": null
+                                },
+                                "resultingObservation": "e1:to"
+                            }
+                        ]
+                    }
+                }
+            ],
+            "selected_runs": [
+                {
+                    "source": "live",
+                    "run": "run"
+                },
+                {
+                    "source": "history",
+                    "run": "run"
+                }
+            ]
+        }
+    },
+    "initial_evidence": "initial",
+    "steps": [
+        {
+            "operation": "set_context",
+            "context": {
+                "context_id": "c1",
+                "observation": {
+                    "source": "live",
+                    "run": "run",
+                    "observation": "current"
+                },
+                "choices": [
+                    {
+                        "choice_id": "stay-a",
+                        "action_description": "stay-a",
+                        "target_widget": "w:stay-a"
+                    }
+                ]
+            }
+        },
+        {
+            "operation": "select"
+        }
+    ]
+}

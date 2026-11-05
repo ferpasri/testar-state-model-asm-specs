@@ -1,0 +1,82 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "ASM configuration",
+    "type": "object",
+    "properties": {
+        "abstraction": {
+            "type": "object",
+            "required": [
+                "version",
+                "name",
+                "state",
+                "capture",
+                "actions"
+            ],
+            "properties": {
+                "version": {
+                    "const": 1
+                },
+                "actions": {
+                    "type": "object"
+                }
+            }
+        },
+        "asms": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "const": "unvisited"
+                            },
+                            "action_limit": {
+                                "type": "integer",
+                                "minimum": 1
+                            },
+                            "unmatched_choices": {
+                                "enum": [
+                                    "exclude",
+                                    "isolated"
+                                ]
+                            }
+                        },
+                        "required": [
+                            "name",
+                            "action_limit"
+                        ],
+                        "additionalProperties": false
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "const": "random"
+                            },
+                            "action_limit": {
+                                "type": "integer",
+                                "minimum": 1
+                            }
+                        },
+                        "required": [
+                            "name",
+                            "action_limit"
+                        ],
+                        "additionalProperties": false
+                    }
+                ]
+            }
+        },
+        "total_action_limit": {
+            "type": "integer",
+            "minimum": 1
+        }
+    },
+    "required": [
+        "abstraction",
+        "asms"
+    ],
+    "additionalProperties": false
+}

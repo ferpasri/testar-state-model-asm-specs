@@ -1,0 +1,355 @@
+{
+    "configuration": {
+        "abstraction": {
+            "version": 1,
+            "name": "Page and action name",
+            "state": [
+                {
+                    "name": "page",
+                    "keys": [
+                        "app.page"
+                    ],
+                    "required": true
+                }
+            ],
+            "capture": "ignore",
+            "actions": {
+                "target": [
+                    {
+                        "name": "name",
+                        "keys": [
+                            "ui.name"
+                        ],
+                        "required": true,
+                        "transforms": [
+                            {
+                                "op": "trim"
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        "asms": [
+            {
+                "name": "unvisited",
+                "action_limit": 100,
+                "unmatched_choices": "isolated"
+            }
+        ]
+    },
+    "evidence_sets": {
+        "initial": {
+            "sources": [
+                {
+                    "id": "live",
+                    "label": "Current execution",
+                    "fingerprint": "bb928ce758239ea82ab30d3b16f3424cdb622b25c319192296f00f7ad71f5e3e",
+                    "evidence": {
+                        "runs": [
+                            {
+                                "id": "run",
+                                "producer": "generic",
+                                "source_run": "live",
+                                "properties": {},
+                                "status": "running",
+                                "reason": null
+                            }
+                        ],
+                        "sequences": [
+                            {
+                                "id": "sequence",
+                                "test_run": "run",
+                                "sequence_index": 1,
+                                "source_sequence": "sequence",
+                                "properties": {},
+                                "status": "running",
+                                "reason": null
+                            }
+                        ],
+                        "observations": [
+                            {
+                                "id": "o1",
+                                "test_sequence": "sequence",
+                                "observation_index": 1,
+                                "timestamp_micros": 1,
+                                "recorded_state": {
+                                    "id": "sequence:o1:state",
+                                    "properties": {},
+                                    "widgets": [
+                                        {
+                                            "id": "one",
+                                            "parent": null,
+                                            "properties": {
+                                                "ui.name": "First"
+                                            }
+                                        },
+                                        {
+                                            "id": "two",
+                                            "parent": null,
+                                            "properties": {
+                                                "ui.name": "Second"
+                                            }
+                                        }
+                                    ],
+                                    "capture": "filtered"
+                                },
+                                "available_action_scope": "eligible",
+                                "available_actions": [
+                                    {
+                                        "action_description": "a1",
+                                        "target_widget": "one"
+                                    },
+                                    {
+                                        "action_description": "a2",
+                                        "target_widget": "two"
+                                    }
+                                ],
+                                "artifacts": []
+                            }
+                        ],
+                        "actions": [
+                            {
+                                "id": "a1",
+                                "action_type": "click",
+                                "properties": {}
+                            },
+                            {
+                                "id": "a2",
+                                "action_type": "click",
+                                "properties": {}
+                            }
+                        ],
+                        "executions": [
+                            {
+                                "execution": {
+                                    "id": "e1",
+                                    "test_sequence": "sequence",
+                                    "source_observation": "o1",
+                                    "action_description": "a1",
+                                    "target_widget": "one",
+                                    "parameters": {}
+                                },
+                                "status": "failed",
+                                "executionResult": {
+                                    "action_execution": "e1",
+                                    "outcome": "error",
+                                    "error": "Operation reported an error"
+                                },
+                                "resultingObservation": null
+                            }
+                        ]
+                    }
+                },
+                {
+                    "id": "history",
+                    "label": "Historical evidence",
+                    "fingerprint": "bfef0de6a2ebec2677f37df1f30c08b21e39f3dd8dcac43ed70ee61b7a059197",
+                    "evidence": {
+                        "runs": [
+                            {
+                                "id": "run",
+                                "producer": "generic",
+                                "source_run": "history",
+                                "properties": {},
+                                "status": "finished",
+                                "reason": "completed"
+                            }
+                        ],
+                        "sequences": [
+                            {
+                                "id": "sequence-1",
+                                "test_run": "run",
+                                "sequence_index": 1,
+                                "source_sequence": "sequence-1",
+                                "properties": {},
+                                "status": "finished",
+                                "reason": "completed"
+                            },
+                            {
+                                "id": "sequence-2",
+                                "test_run": "run",
+                                "sequence_index": 2,
+                                "source_sequence": "sequence-2",
+                                "properties": {},
+                                "status": "finished",
+                                "reason": "completed"
+                            }
+                        ],
+                        "observations": [
+                            {
+                                "id": "o1a",
+                                "test_sequence": "sequence-1",
+                                "observation_index": 1,
+                                "timestamp_micros": 1,
+                                "recorded_state": {
+                                    "id": "sequence-1:o1a:state",
+                                    "properties": {
+                                        "app.page": "form"
+                                    },
+                                    "widgets": [
+                                        {
+                                            "id": "old:one",
+                                            "parent": null,
+                                            "properties": {
+                                                "ui.name": "First"
+                                            }
+                                        },
+                                        {
+                                            "id": "old:two",
+                                            "parent": null,
+                                            "properties": {
+                                                "ui.name": "Second"
+                                            }
+                                        }
+                                    ],
+                                    "capture": "filtered"
+                                },
+                                "available_action_scope": "eligible",
+                                "available_actions": [
+                                    {
+                                        "action_description": "a1",
+                                        "target_widget": "old:one"
+                                    },
+                                    {
+                                        "action_description": "a2",
+                                        "target_widget": "old:two"
+                                    }
+                                ],
+                                "artifacts": []
+                            },
+                            {
+                                "id": "o2a",
+                                "test_sequence": "sequence-2",
+                                "observation_index": 1,
+                                "timestamp_micros": 1,
+                                "recorded_state": {
+                                    "id": "sequence-2:o2a:state",
+                                    "properties": {
+                                        "app.page": "form"
+                                    },
+                                    "widgets": [
+                                        {
+                                            "id": "old:one",
+                                            "parent": null,
+                                            "properties": {
+                                                "ui.name": "First"
+                                            }
+                                        },
+                                        {
+                                            "id": "old:two",
+                                            "parent": null,
+                                            "properties": {
+                                                "ui.name": "Second"
+                                            }
+                                        }
+                                    ],
+                                    "capture": "filtered"
+                                },
+                                "available_action_scope": "eligible",
+                                "available_actions": [
+                                    {
+                                        "action_description": "a1",
+                                        "target_widget": "old:one"
+                                    },
+                                    {
+                                        "action_description": "a2",
+                                        "target_widget": "old:two"
+                                    }
+                                ],
+                                "artifacts": []
+                            }
+                        ],
+                        "actions": [
+                            {
+                                "id": "a1",
+                                "action_type": "click",
+                                "properties": {}
+                            },
+                            {
+                                "id": "a2",
+                                "action_type": "click",
+                                "properties": {}
+                            }
+                        ],
+                        "executions": [
+                            {
+                                "execution": {
+                                    "id": "e1",
+                                    "test_sequence": "sequence-1",
+                                    "source_observation": "o1a",
+                                    "action_description": "a1",
+                                    "target_widget": "old:one",
+                                    "parameters": {}
+                                },
+                                "status": "failed",
+                                "executionResult": {
+                                    "action_execution": "e1",
+                                    "outcome": "error",
+                                    "error": "Operation reported an error"
+                                },
+                                "resultingObservation": null
+                            },
+                            {
+                                "execution": {
+                                    "id": "e2",
+                                    "test_sequence": "sequence-2",
+                                    "source_observation": "o2a",
+                                    "action_description": "a1",
+                                    "target_widget": "old:one",
+                                    "parameters": {}
+                                },
+                                "status": "failed",
+                                "executionResult": {
+                                    "action_execution": "e2",
+                                    "outcome": "error",
+                                    "error": "Operation reported an error"
+                                },
+                                "resultingObservation": null
+                            }
+                        ]
+                    }
+                }
+            ],
+            "selected_runs": [
+                {
+                    "source": "live",
+                    "run": "run"
+                },
+                {
+                    "source": "history",
+                    "run": "run"
+                }
+            ]
+        }
+    },
+    "initial_evidence": "initial",
+    "steps": [
+        {
+            "operation": "set_context",
+            "context": {
+                "context_id": "c1",
+                "observation": {
+                    "source": "live",
+                    "run": "run",
+                    "observation": "o1"
+                },
+                "choices": [
+                    {
+                        "choice_id": "choice-1",
+                        "action_description": "a1",
+                        "target_widget": "one"
+                    },
+                    {
+                        "choice_id": "choice-2",
+                        "action_description": "a2",
+                        "target_widget": "two"
+                    }
+                ]
+            }
+        },
+        {
+            "operation": "select"
+        }
+    ]
+}

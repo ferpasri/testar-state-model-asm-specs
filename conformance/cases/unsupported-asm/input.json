@@ -1,0 +1,48 @@
+{
+    "configuration": {
+        "abstraction": {
+            "version": 1,
+            "name": "Page and action name",
+            "state": [
+                {
+                    "name": "page",
+                    "keys": [
+                        "app.page"
+                    ],
+                    "required": true
+                }
+            ],
+            "capture": "ignore",
+            "actions": {
+                "target": [
+                    {
+                        "name": "name",
+                        "keys": [
+                            "ui.name"
+                        ],
+                        "required": true,
+                        "transforms": [
+                            {
+                                "op": "trim"
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        "asms": [
+            {
+                "name": "unknown-asm",
+                "action_limit": 100
+            }
+        ]
+    },
+    "evidence_sets": {
+        "initial": {
+            "sources": [],
+            "selected_runs": []
+        }
+    },
+    "initial_evidence": "initial",
+    "steps": []
+}

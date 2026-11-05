@@ -1,0 +1,21 @@
+{
+    "initialization": {
+        "result_type": "ready",
+        "knowledge_revision": 0
+    },
+    "responses": [
+        {
+            "result_type": "error",
+            "knowledge_revision": 0,
+            "code": "execution_in_progress"
+        },
+        {
+            "result_type": "no_action",
+            "knowledge_revision": 0,
+            "context_id": null,
+            "reason": "no_context",
+            "rankings": [],
+            "asm_index": 0
+        }
+    ]
+}

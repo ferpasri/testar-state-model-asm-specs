@@ -1,0 +1,125 @@
+{
+    "initialization": {
+        "result_type": "ready",
+        "knowledge_revision": 0
+    },
+    "responses": [
+        {
+            "result_type": "context_ready",
+            "knowledge_revision": 0,
+            "context_id": "c1"
+        },
+        {
+            "result_type": "no_action",
+            "knowledge_revision": 0,
+            "context_id": "c1",
+            "reason": "no_applicable_asm",
+            "rankings": [
+                {
+                    "choice_id": "choice-1",
+                    "match": "matched",
+                    "eligible": true,
+                    "count_scope": "abstract_action",
+                    "recorded_executions": 2,
+                    "status_counts": {
+                        "completed": 2,
+                        "failed": 0,
+                        "incomplete": 0,
+                        "awaiting_execution_result": 0,
+                        "awaiting_resulting_observation": 0
+                    },
+                    "supporting_executions": [
+                        {
+                            "source": "history",
+                            "run": "run",
+                            "execution": "e1"
+                        },
+                        {
+                            "source": "history",
+                            "run": "run",
+                            "execution": "e2"
+                        }
+                    ]
+                },
+                {
+                    "choice_id": "choice-2",
+                    "match": "matched",
+                    "eligible": true,
+                    "count_scope": "abstract_action",
+                    "recorded_executions": 1,
+                    "status_counts": {
+                        "completed": 1,
+                        "failed": 0,
+                        "incomplete": 0,
+                        "awaiting_execution_result": 0,
+                        "awaiting_resulting_observation": 0
+                    },
+                    "supporting_executions": [
+                        {
+                            "source": "history",
+                            "run": "run",
+                            "execution": "e3"
+                        }
+                    ]
+                }
+            ],
+            "asm_index": 0
+        },
+        {
+            "result_type": "no_action",
+            "knowledge_revision": 0,
+            "context_id": "c1",
+            "reason": "no_applicable_asm",
+            "rankings": [
+                {
+                    "choice_id": "choice-1",
+                    "match": "matched",
+                    "eligible": true,
+                    "count_scope": "abstract_action",
+                    "recorded_executions": 2,
+                    "status_counts": {
+                        "completed": 2,
+                        "failed": 0,
+                        "incomplete": 0,
+                        "awaiting_execution_result": 0,
+                        "awaiting_resulting_observation": 0
+                    },
+                    "supporting_executions": [
+                        {
+                            "source": "history",
+                            "run": "run",
+                            "execution": "e1"
+                        },
+                        {
+                            "source": "history",
+                            "run": "run",
+                            "execution": "e2"
+                        }
+                    ]
+                },
+                {
+                    "choice_id": "choice-2",
+                    "match": "matched",
+                    "eligible": true,
+                    "count_scope": "abstract_action",
+                    "recorded_executions": 1,
+                    "status_counts": {
+                        "completed": 1,
+                        "failed": 0,
+                        "incomplete": 0,
+                        "awaiting_execution_result": 0,
+                        "awaiting_resulting_observation": 0
+                    },
+                    "supporting_executions": [
+                        {
+                            "source": "history",
+                            "run": "run",
+                            "execution": "e3"
+                        }
+                    ]
+                }
+            ],
+            "asm_index": 0
+        }
+    ]
+}

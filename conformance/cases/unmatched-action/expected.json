@@ -1,0 +1,31 @@
+{
+    "initialization": {
+        "result_type": "ready",
+        "knowledge_revision": 0
+    },
+    "responses": [
+        {
+            "result_type": "context_ready",
+            "knowledge_revision": 0,
+            "context_id": "c1"
+        },
+        {
+            "result_type": "no_action",
+            "knowledge_revision": 0,
+            "context_id": "c1",
+            "reason": "no_comparable_choices",
+            "rankings": [
+                {
+                    "choice_id": "choice-1",
+                    "match": "unmatched_action",
+                    "eligible": false,
+                    "count_scope": null,
+                    "recorded_executions": null,
+                    "status_counts": null,
+                    "supporting_executions": []
+                }
+            ],
+            "asm_index": 0
+        }
+    ]
+}

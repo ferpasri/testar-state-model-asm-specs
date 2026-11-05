@@ -1,0 +1,674 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "ASM conformance input",
+    "type": "object",
+    "properties": {
+        "configuration": {
+            "type": "object"
+        },
+        "evidence_sets": {
+            "type": "object",
+            "minProperties": 1,
+            "additionalProperties": {
+                "$ref": "#/$defs/evidence_set"
+            }
+        },
+        "initial_evidence": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256
+        },
+        "steps": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/step"
+            }
+        }
+    },
+    "required": [
+        "configuration",
+        "evidence_sets",
+        "initial_evidence",
+        "steps"
+    ],
+    "additionalProperties": false,
+    "$defs": {
+        "execution_reference": {
+            "type": "object",
+            "properties": {
+                "source": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 256
+                },
+                "run": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 256
+                },
+                "execution": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 256
+                }
+            },
+            "required": [
+                "source",
+                "run",
+                "execution"
+            ],
+            "additionalProperties": false
+        },
+        "observation_reference": {
+            "type": "object",
+            "properties": {
+                "source": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 256
+                },
+                "run": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 256
+                },
+                "observation": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 256
+                }
+            },
+            "required": [
+                "source",
+                "run",
+                "observation"
+            ],
+            "additionalProperties": false
+        },
+        "run_reference": {
+            "type": "object",
+            "properties": {
+                "source": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 256
+                },
+                "run": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 256
+                }
+            },
+            "required": [
+                "source",
+                "run"
+            ],
+            "additionalProperties": false
+        },
+        "choice": {
+            "type": "object",
+            "properties": {
+                "choice_id": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 256
+                },
+                "action_description": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 256
+                },
+                "target_widget": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "choice_id",
+                "action_description",
+                "target_widget"
+            ],
+            "additionalProperties": false
+        },
+        "context": {
+            "type": "object",
+            "properties": {
+                "context_id": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 256
+                },
+                "observation": {
+                    "$ref": "#/$defs/observation_reference"
+                },
+                "choices": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/$defs/choice"
+                    }
+                }
+            },
+            "required": [
+                "context_id",
+                "observation",
+                "choices"
+            ],
+            "additionalProperties": false
+        },
+        "selection": {
+            "type": "object",
+            "properties": {
+                "context_id": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 256
+                },
+                "knowledge_revision": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "choice_id": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 256
+                }
+            },
+            "required": [
+                "context_id",
+                "knowledge_revision",
+                "choice_id"
+            ],
+            "additionalProperties": false
+        },
+        "widget": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 256
+                },
+                "parent": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "properties": {
+                    "type": "object"
+                }
+            },
+            "required": [
+                "id",
+                "parent",
+                "properties"
+            ],
+            "additionalProperties": false
+        },
+        "recorded_state": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 256
+                },
+                "properties": {
+                    "type": "object"
+                },
+                "widgets": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/$defs/widget"
+                    }
+                },
+                "capture": {
+                    "enum": [
+                        "complete",
+                        "filtered",
+                        "unavailable"
+                    ]
+                }
+            },
+            "required": [
+                "id",
+                "properties",
+                "widgets",
+                "capture"
+            ],
+            "additionalProperties": false
+        },
+        "binding": {
+            "type": "object",
+            "properties": {
+                "action_description": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 256
+                },
+                "target_widget": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "action_description",
+                "target_widget"
+            ],
+            "additionalProperties": false
+        },
+        "observation": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 256
+                },
+                "test_sequence": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 256
+                },
+                "observation_index": {
+                    "type": "integer",
+                    "minimum": 1
+                },
+                "timestamp_micros": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "recorded_state": {
+                    "$ref": "#/$defs/recorded_state"
+                },
+                "available_action_scope": {
+                    "enum": [
+                        "generated",
+                        "eligible",
+                        "unknown"
+                    ]
+                },
+                "available_actions": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/$defs/binding"
+                    }
+                },
+                "artifacts": {
+                    "type": "array",
+                    "items": {
+                        "type": "object"
+                    }
+                }
+            },
+            "required": [
+                "id",
+                "test_sequence",
+                "observation_index",
+                "timestamp_micros",
+                "recorded_state",
+                "available_action_scope",
+                "available_actions",
+                "artifacts"
+            ],
+            "additionalProperties": false
+        },
+        "action": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 256
+                },
+                "action_type": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 256
+                },
+                "properties": {
+                    "type": "object"
+                }
+            },
+            "required": [
+                "id",
+                "action_type",
+                "properties"
+            ],
+            "additionalProperties": false
+        },
+        "execution": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 256
+                },
+                "test_sequence": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 256
+                },
+                "source_observation": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 256
+                },
+                "action_description": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 256
+                },
+                "target_widget": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "parameters": {
+                    "type": "object"
+                }
+            },
+            "required": [
+                "id",
+                "test_sequence",
+                "source_observation",
+                "action_description",
+                "target_widget",
+                "parameters"
+            ],
+            "additionalProperties": false
+        },
+        "execution_record": {
+            "type": "object",
+            "properties": {
+                "execution": {
+                    "$ref": "#/$defs/execution"
+                },
+                "status": {
+                    "enum": [
+                        "completed",
+                        "failed",
+                        "incomplete",
+                        "awaiting_execution_result",
+                        "awaiting_resulting_observation"
+                    ]
+                },
+                "executionResult": {
+                    "type": [
+                        "object",
+                        "null"
+                    ]
+                },
+                "resultingObservation": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "execution",
+                "status",
+                "executionResult",
+                "resultingObservation"
+            ],
+            "additionalProperties": false
+        },
+        "source": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 256
+                },
+                "label": {
+                    "type": "string"
+                },
+                "fingerprint": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 256
+                },
+                "evidence": {
+                    "type": "object",
+                    "properties": {
+                        "runs": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "required": [
+                                    "id"
+                                ]
+                            }
+                        },
+                        "sequences": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "required": [
+                                    "id",
+                                    "test_run"
+                                ]
+                            }
+                        },
+                        "observations": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/$defs/observation"
+                            }
+                        },
+                        "actions": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/$defs/action"
+                            }
+                        },
+                        "executions": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/$defs/execution_record"
+                            }
+                        }
+                    },
+                    "required": [
+                        "runs",
+                        "sequences",
+                        "observations",
+                        "actions",
+                        "executions"
+                    ],
+                    "additionalProperties": false
+                }
+            },
+            "required": [
+                "id",
+                "label",
+                "fingerprint",
+                "evidence"
+            ],
+            "additionalProperties": false
+        },
+        "evidence_set": {
+            "type": "object",
+            "properties": {
+                "sources": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/$defs/source"
+                    }
+                },
+                "selected_runs": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/$defs/run_reference"
+                    }
+                }
+            },
+            "required": [
+                "sources",
+                "selected_runs"
+            ],
+            "additionalProperties": false
+        },
+        "step": {
+            "oneOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "operation": {
+                            "const": "set_context"
+                        },
+                        "context": {
+                            "$ref": "#/$defs/context"
+                        }
+                    },
+                    "required": [
+                        "operation",
+                        "context"
+                    ],
+                    "additionalProperties": false
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "operation": {
+                            "const": "select"
+                        },
+                        "random_choices": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "size": {
+                                        "type": "integer",
+                                        "minimum": 2
+                                    },
+                                    "index": {
+                                        "type": "integer",
+                                        "minimum": 0
+                                    }
+                                },
+                                "required": [
+                                    "size",
+                                    "index"
+                                ],
+                                "additionalProperties": false
+                            }
+                        }
+                    },
+                    "required": [
+                        "operation"
+                    ],
+                    "additionalProperties": false
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "operation": {
+                            "const": "begin_execution"
+                        },
+                        "selection": {
+                            "$ref": "#/$defs/selection"
+                        },
+                        "execution": {
+                            "$ref": "#/$defs/execution_reference"
+                        }
+                    },
+                    "required": [
+                        "operation",
+                        "selection",
+                        "execution"
+                    ],
+                    "additionalProperties": false
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "operation": {
+                            "const": "report_execution"
+                        },
+                        "execution": {
+                            "$ref": "#/$defs/execution_reference"
+                        },
+                        "update_id": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 256
+                        },
+                        "evidence_set": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 256
+                        }
+                    },
+                    "required": [
+                        "operation",
+                        "execution",
+                        "update_id",
+                        "evidence_set"
+                    ],
+                    "additionalProperties": false
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "operation": {
+                            "const": "report_not_invoked"
+                        },
+                        "execution": {
+                            "$ref": "#/$defs/execution_reference"
+                        }
+                    },
+                    "required": [
+                        "operation",
+                        "execution"
+                    ],
+                    "additionalProperties": false
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "operation": {
+                            "const": "update_evidence"
+                        },
+                        "update_id": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 256
+                        },
+                        "evidence_set": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 256
+                        }
+                    },
+                    "required": [
+                        "operation",
+                        "update_id",
+                        "evidence_set"
+                    ],
+                    "additionalProperties": false
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "operation": {
+                            "const": "cancel"
+                        }
+                    },
+                    "required": [
+                        "operation"
+                    ],
+                    "additionalProperties": false
+                }
+            ]
+        }
+    }
+}

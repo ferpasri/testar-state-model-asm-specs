@@ -1,0 +1,41 @@
+{
+    "initialization": {
+        "result_type": "ready",
+        "knowledge_revision": 0
+    },
+    "responses": [
+        {
+            "result_type": "context_ready",
+            "knowledge_revision": 0,
+            "context_id": "c1"
+        },
+        {
+            "result_type": "selected",
+            "knowledge_revision": 0,
+            "context_id": "c1",
+            "reason": "random_action",
+            "rankings": [
+                {
+                    "choice_id": "choice-1",
+                    "match": "unmatched_state",
+                    "eligible": true,
+                    "count_scope": null,
+                    "recorded_executions": null,
+                    "status_counts": null,
+                    "supporting_executions": []
+                },
+                {
+                    "choice_id": "choice-2",
+                    "match": "unmatched_state",
+                    "eligible": true,
+                    "count_scope": null,
+                    "recorded_executions": null,
+                    "status_counts": null,
+                    "supporting_executions": []
+                }
+            ],
+            "asm_index": 0,
+            "choice_id": "choice-2"
+        }
+    ]
+}

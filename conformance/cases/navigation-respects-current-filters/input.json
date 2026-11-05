@@ -1,0 +1,662 @@
+{
+    "configuration": {
+        "abstraction": {
+            "version": 1,
+            "name": "Page and action name",
+            "state": [
+                {
+                    "name": "page",
+                    "keys": [
+                        "app.page"
+                    ],
+                    "required": true
+                }
+            ],
+            "capture": "ignore",
+            "actions": {
+                "target": [
+                    {
+                        "name": "name",
+                        "keys": [
+                            "ui.name"
+                        ],
+                        "required": true,
+                        "transforms": [
+                            {
+                                "op": "trim"
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        "asms": [
+            {
+                "name": "unvisited",
+                "action_limit": 100,
+                "unmatched_choices": "exclude"
+            }
+        ]
+    },
+    "evidence_sets": {
+        "initial": {
+            "sources": [
+                {
+                    "id": "live",
+                    "label": "live",
+                    "fingerprint": "27a0645780a525a6188512cfe96efb73520ae02defdd532277065b6ec65a9053",
+                    "evidence": {
+                        "runs": [
+                            {
+                                "id": "run",
+                                "producer": "generic",
+                                "source_run": "live",
+                                "properties": {},
+                                "status": "running",
+                                "reason": null
+                            }
+                        ],
+                        "sequences": [
+                            {
+                                "id": "sequence",
+                                "test_run": "run",
+                                "sequence_index": 1,
+                                "source_sequence": "sequence",
+                                "properties": {},
+                                "status": "running",
+                                "reason": null
+                            }
+                        ],
+                        "observations": [
+                            {
+                                "id": "current",
+                                "test_sequence": "sequence",
+                                "observation_index": 1,
+                                "timestamp_micros": 1,
+                                "recorded_state": {
+                                    "id": "current:state",
+                                    "properties": {
+                                        "app.page": "A"
+                                    },
+                                    "capture": "filtered",
+                                    "widgets": [
+                                        {
+                                            "id": "w:to-b",
+                                            "parent": null,
+                                            "properties": {
+                                                "ui.name": "to-b"
+                                            }
+                                        },
+                                        {
+                                            "id": "w:to-c",
+                                            "parent": null,
+                                            "properties": {
+                                                "ui.name": "to-c"
+                                            }
+                                        }
+                                    ]
+                                },
+                                "available_action_scope": "eligible",
+                                "available_actions": [
+                                    {
+                                        "action_description": "to-b",
+                                        "target_widget": "w:to-b"
+                                    },
+                                    {
+                                        "action_description": "to-c",
+                                        "target_widget": "w:to-c"
+                                    }
+                                ],
+                                "artifacts": []
+                            }
+                        ],
+                        "actions": [
+                            {
+                                "id": "to-b",
+                                "action_type": "click",
+                                "properties": {}
+                            },
+                            {
+                                "id": "to-c",
+                                "action_type": "click",
+                                "properties": {}
+                            }
+                        ],
+                        "executions": []
+                    }
+                },
+                {
+                    "id": "history",
+                    "label": "history",
+                    "fingerprint": "9591c23b27415714b003905744912371de72f679eb3aa92daa9637eade880650",
+                    "evidence": {
+                        "runs": [
+                            {
+                                "id": "run",
+                                "producer": "generic",
+                                "source_run": "history",
+                                "properties": {},
+                                "status": "finished",
+                                "reason": null
+                            }
+                        ],
+                        "sequences": [
+                            {
+                                "id": "edge-1",
+                                "test_run": "run",
+                                "sequence_index": 1,
+                                "source_sequence": "edge-1",
+                                "properties": {},
+                                "status": "finished",
+                                "reason": null
+                            },
+                            {
+                                "id": "edge-2",
+                                "test_run": "run",
+                                "sequence_index": 2,
+                                "source_sequence": "edge-2",
+                                "properties": {},
+                                "status": "finished",
+                                "reason": null
+                            },
+                            {
+                                "id": "edge-3",
+                                "test_run": "run",
+                                "sequence_index": 3,
+                                "source_sequence": "edge-3",
+                                "properties": {},
+                                "status": "finished",
+                                "reason": null
+                            },
+                            {
+                                "id": "known:A",
+                                "test_run": "run",
+                                "sequence_index": 4,
+                                "source_sequence": "known:A",
+                                "properties": {},
+                                "status": "finished",
+                                "reason": null
+                            },
+                            {
+                                "id": "known:B",
+                                "test_run": "run",
+                                "sequence_index": 5,
+                                "source_sequence": "known:B",
+                                "properties": {},
+                                "status": "finished",
+                                "reason": null
+                            },
+                            {
+                                "id": "known:C",
+                                "test_run": "run",
+                                "sequence_index": 6,
+                                "source_sequence": "known:C",
+                                "properties": {},
+                                "status": "finished",
+                                "reason": null
+                            },
+                            {
+                                "id": "known:D",
+                                "test_run": "run",
+                                "sequence_index": 7,
+                                "source_sequence": "known:D",
+                                "properties": {},
+                                "status": "finished",
+                                "reason": null
+                            }
+                        ],
+                        "observations": [
+                            {
+                                "id": "e1:from",
+                                "test_sequence": "edge-1",
+                                "observation_index": 1,
+                                "timestamp_micros": 1,
+                                "recorded_state": {
+                                    "id": "e1:from:state",
+                                    "properties": {
+                                        "app.page": "A"
+                                    },
+                                    "capture": "filtered",
+                                    "widgets": [
+                                        {
+                                            "id": "w:to-b",
+                                            "parent": null,
+                                            "properties": {
+                                                "ui.name": "to-b"
+                                            }
+                                        },
+                                        {
+                                            "id": "w:to-c",
+                                            "parent": null,
+                                            "properties": {
+                                                "ui.name": "to-c"
+                                            }
+                                        }
+                                    ]
+                                },
+                                "available_action_scope": "eligible",
+                                "available_actions": [
+                                    {
+                                        "action_description": "to-b",
+                                        "target_widget": "w:to-b"
+                                    },
+                                    {
+                                        "action_description": "to-c",
+                                        "target_widget": "w:to-c"
+                                    }
+                                ],
+                                "artifacts": []
+                            },
+                            {
+                                "id": "e1:to",
+                                "test_sequence": "edge-1",
+                                "observation_index": 2,
+                                "timestamp_micros": 2,
+                                "recorded_state": {
+                                    "id": "e1:to:state",
+                                    "properties": {
+                                        "app.page": "B"
+                                    },
+                                    "capture": "filtered",
+                                    "widgets": [
+                                        {
+                                            "id": "w:new-b",
+                                            "parent": null,
+                                            "properties": {
+                                                "ui.name": "new-b"
+                                            }
+                                        }
+                                    ]
+                                },
+                                "available_action_scope": "eligible",
+                                "available_actions": [
+                                    {
+                                        "action_description": "new-b",
+                                        "target_widget": "w:new-b"
+                                    }
+                                ],
+                                "artifacts": []
+                            },
+                            {
+                                "id": "e2:from",
+                                "test_sequence": "edge-2",
+                                "observation_index": 1,
+                                "timestamp_micros": 1,
+                                "recorded_state": {
+                                    "id": "e2:from:state",
+                                    "properties": {
+                                        "app.page": "A"
+                                    },
+                                    "capture": "filtered",
+                                    "widgets": [
+                                        {
+                                            "id": "w:to-b",
+                                            "parent": null,
+                                            "properties": {
+                                                "ui.name": "to-b"
+                                            }
+                                        },
+                                        {
+                                            "id": "w:to-c",
+                                            "parent": null,
+                                            "properties": {
+                                                "ui.name": "to-c"
+                                            }
+                                        }
+                                    ]
+                                },
+                                "available_action_scope": "eligible",
+                                "available_actions": [
+                                    {
+                                        "action_description": "to-b",
+                                        "target_widget": "w:to-b"
+                                    },
+                                    {
+                                        "action_description": "to-c",
+                                        "target_widget": "w:to-c"
+                                    }
+                                ],
+                                "artifacts": []
+                            },
+                            {
+                                "id": "e2:to",
+                                "test_sequence": "edge-2",
+                                "observation_index": 2,
+                                "timestamp_micros": 2,
+                                "recorded_state": {
+                                    "id": "e2:to:state",
+                                    "properties": {
+                                        "app.page": "C"
+                                    },
+                                    "capture": "filtered",
+                                    "widgets": [
+                                        {
+                                            "id": "w:to-d",
+                                            "parent": null,
+                                            "properties": {
+                                                "ui.name": "to-d"
+                                            }
+                                        }
+                                    ]
+                                },
+                                "available_action_scope": "eligible",
+                                "available_actions": [
+                                    {
+                                        "action_description": "to-d",
+                                        "target_widget": "w:to-d"
+                                    }
+                                ],
+                                "artifacts": []
+                            },
+                            {
+                                "id": "e3:from",
+                                "test_sequence": "edge-3",
+                                "observation_index": 1,
+                                "timestamp_micros": 1,
+                                "recorded_state": {
+                                    "id": "e3:from:state",
+                                    "properties": {
+                                        "app.page": "C"
+                                    },
+                                    "capture": "filtered",
+                                    "widgets": [
+                                        {
+                                            "id": "w:to-d",
+                                            "parent": null,
+                                            "properties": {
+                                                "ui.name": "to-d"
+                                            }
+                                        }
+                                    ]
+                                },
+                                "available_action_scope": "eligible",
+                                "available_actions": [
+                                    {
+                                        "action_description": "to-d",
+                                        "target_widget": "w:to-d"
+                                    }
+                                ],
+                                "artifacts": []
+                            },
+                            {
+                                "id": "e3:to",
+                                "test_sequence": "edge-3",
+                                "observation_index": 2,
+                                "timestamp_micros": 2,
+                                "recorded_state": {
+                                    "id": "e3:to:state",
+                                    "properties": {
+                                        "app.page": "D"
+                                    },
+                                    "capture": "filtered",
+                                    "widgets": [
+                                        {
+                                            "id": "w:new-d",
+                                            "parent": null,
+                                            "properties": {
+                                                "ui.name": "new-d"
+                                            }
+                                        }
+                                    ]
+                                },
+                                "available_action_scope": "eligible",
+                                "available_actions": [
+                                    {
+                                        "action_description": "new-d",
+                                        "target_widget": "w:new-d"
+                                    }
+                                ],
+                                "artifacts": []
+                            },
+                            {
+                                "id": "known:A",
+                                "test_sequence": "known:A",
+                                "observation_index": 1,
+                                "timestamp_micros": 1,
+                                "recorded_state": {
+                                    "id": "known:A:state",
+                                    "properties": {
+                                        "app.page": "A"
+                                    },
+                                    "capture": "filtered",
+                                    "widgets": [
+                                        {
+                                            "id": "w:to-b",
+                                            "parent": null,
+                                            "properties": {
+                                                "ui.name": "to-b"
+                                            }
+                                        },
+                                        {
+                                            "id": "w:to-c",
+                                            "parent": null,
+                                            "properties": {
+                                                "ui.name": "to-c"
+                                            }
+                                        }
+                                    ]
+                                },
+                                "available_action_scope": "eligible",
+                                "available_actions": [
+                                    {
+                                        "action_description": "to-b",
+                                        "target_widget": "w:to-b"
+                                    },
+                                    {
+                                        "action_description": "to-c",
+                                        "target_widget": "w:to-c"
+                                    }
+                                ],
+                                "artifacts": []
+                            },
+                            {
+                                "id": "known:B",
+                                "test_sequence": "known:B",
+                                "observation_index": 1,
+                                "timestamp_micros": 1,
+                                "recorded_state": {
+                                    "id": "known:B:state",
+                                    "properties": {
+                                        "app.page": "B"
+                                    },
+                                    "capture": "filtered",
+                                    "widgets": [
+                                        {
+                                            "id": "w:new-b",
+                                            "parent": null,
+                                            "properties": {
+                                                "ui.name": "new-b"
+                                            }
+                                        }
+                                    ]
+                                },
+                                "available_action_scope": "eligible",
+                                "available_actions": [
+                                    {
+                                        "action_description": "new-b",
+                                        "target_widget": "w:new-b"
+                                    }
+                                ],
+                                "artifacts": []
+                            },
+                            {
+                                "id": "known:C",
+                                "test_sequence": "known:C",
+                                "observation_index": 1,
+                                "timestamp_micros": 1,
+                                "recorded_state": {
+                                    "id": "known:C:state",
+                                    "properties": {
+                                        "app.page": "C"
+                                    },
+                                    "capture": "filtered",
+                                    "widgets": [
+                                        {
+                                            "id": "w:to-d",
+                                            "parent": null,
+                                            "properties": {
+                                                "ui.name": "to-d"
+                                            }
+                                        }
+                                    ]
+                                },
+                                "available_action_scope": "eligible",
+                                "available_actions": [
+                                    {
+                                        "action_description": "to-d",
+                                        "target_widget": "w:to-d"
+                                    }
+                                ],
+                                "artifacts": []
+                            },
+                            {
+                                "id": "known:D",
+                                "test_sequence": "known:D",
+                                "observation_index": 1,
+                                "timestamp_micros": 1,
+                                "recorded_state": {
+                                    "id": "known:D:state",
+                                    "properties": {
+                                        "app.page": "D"
+                                    },
+                                    "capture": "filtered",
+                                    "widgets": [
+                                        {
+                                            "id": "w:new-d",
+                                            "parent": null,
+                                            "properties": {
+                                                "ui.name": "new-d"
+                                            }
+                                        }
+                                    ]
+                                },
+                                "available_action_scope": "eligible",
+                                "available_actions": [
+                                    {
+                                        "action_description": "new-d",
+                                        "target_widget": "w:new-d"
+                                    }
+                                ],
+                                "artifacts": []
+                            }
+                        ],
+                        "actions": [
+                            {
+                                "id": "new-b",
+                                "action_type": "click",
+                                "properties": {}
+                            },
+                            {
+                                "id": "new-d",
+                                "action_type": "click",
+                                "properties": {}
+                            },
+                            {
+                                "id": "to-b",
+                                "action_type": "click",
+                                "properties": {}
+                            },
+                            {
+                                "id": "to-c",
+                                "action_type": "click",
+                                "properties": {}
+                            },
+                            {
+                                "id": "to-d",
+                                "action_type": "click",
+                                "properties": {}
+                            }
+                        ],
+                        "executions": [
+                            {
+                                "execution": {
+                                    "id": "e1",
+                                    "test_sequence": "edge-1",
+                                    "source_observation": "e1:from",
+                                    "action_description": "to-b",
+                                    "target_widget": "w:to-b",
+                                    "parameters": {}
+                                },
+                                "status": "completed",
+                                "executionResult": {
+                                    "action_execution": "e1",
+                                    "outcome": "returned",
+                                    "error": null
+                                },
+                                "resultingObservation": "e1:to"
+                            },
+                            {
+                                "execution": {
+                                    "id": "e2",
+                                    "test_sequence": "edge-2",
+                                    "source_observation": "e2:from",
+                                    "action_description": "to-c",
+                                    "target_widget": "w:to-c",
+                                    "parameters": {}
+                                },
+                                "status": "completed",
+                                "executionResult": {
+                                    "action_execution": "e2",
+                                    "outcome": "returned",
+                                    "error": null
+                                },
+                                "resultingObservation": "e2:to"
+                            },
+                            {
+                                "execution": {
+                                    "id": "e3",
+                                    "test_sequence": "edge-3",
+                                    "source_observation": "e3:from",
+                                    "action_description": "to-d",
+                                    "target_widget": "w:to-d",
+                                    "parameters": {}
+                                },
+                                "status": "completed",
+                                "executionResult": {
+                                    "action_execution": "e3",
+                                    "outcome": "returned",
+                                    "error": null
+                                },
+                                "resultingObservation": "e3:to"
+                            }
+                        ]
+                    }
+                }
+            ],
+            "selected_runs": [
+                {
+                    "source": "live",
+                    "run": "run"
+                },
+                {
+                    "source": "history",
+                    "run": "run"
+                }
+            ]
+        }
+    },
+    "initial_evidence": "initial",
+    "steps": [
+        {
+            "operation": "set_context",
+            "context": {
+                "context_id": "c1",
+                "observation": {
+                    "source": "live",
+                    "run": "run",
+                    "observation": "current"
+                },
+                "choices": [
+                    {
+                        "choice_id": "to-c",
+                        "action_description": "to-c",
+                        "target_widget": "w:to-c"
+                    }
+                ]
+            }
+        },
+        {
+            "operation": "select"
+        }
+    ]
+}
