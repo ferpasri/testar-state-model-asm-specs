@@ -1,8 +1,8 @@
 # Selection contract
 
-The ASM library coordinates exploration and selects from actions discovered by its technology integration. The integration keeps the executable technology objects; a choice identifier identifies which operation to invoke.
+The ASM library coordinates exploration and selects from actions discovered by its exploration driver. The driver keeps the executable technology objects; a choice identifier identifies which operation to invoke.
 
-The operations below define the selection and reporting boundary. The library's exploration entry point coordinates this boundary with the integration's observation, discovery, and execution capabilities. A customer starts exploration rather than having to implement that cycle. Historical evidence can come from independently recorded tool traces.
+The operations below define the selection and reporting boundary. The library's exploration entry point coordinates this boundary with the driver's observation, discovery, and execution capabilities. A customer starts exploration rather than having to implement that cycle. Historical evidence can come from independently recorded tool traces.
 
 ## Start
 
@@ -10,9 +10,9 @@ Supply `configuration`, reconstructed `sources`, and `selected_runs`. Configurat
 
 Abstraction rules include an `actions` section. State grouping and action grouping are both needed for history-based selection. The abstraction rules stay fixed during an ASM run. The controller switches among the configured ASMs.
 
-A technology integration can supply documented default rules. It resolves those defaults into the same explicit configuration before starting the ASM. Generic ASM libraries accept the resolved definition.
+A exploration driver can supply documented default rules. It resolves those defaults into the same explicit configuration before starting the ASM. Generic ASM libraries accept the resolved definition.
 
-Sources use the reconstructed collection structure defined by [abstraction conformance](https://github.com/ferpasri/testar-abstraction-specs/tree/main/conformance). An evidence reader validates the trace and lifecycle first. The ASM retains its own stored history and model, builds the abstract model through its native abstraction library, and starts at knowledge revision zero. This revision is a run-local counter that identifies which accepted evidence a decision used. Historical evidence supplied by the caller stays unchanged.
+Sources use the reconstructed collection structure defined by [abstraction conformance](https://github.com/ferpasri/testar-abstraction-specs/tree/main/conformance). An evidence reader validates the trace and lifecycle first. The ASM retains its own stored history and model, builds the abstract model through its native abstraction library, and starts at ASM data revision zero. This revision is a run-local counter that identifies which accepted evidence a decision used. Historical evidence supplied by the caller stays unchanged.
 
 ## Current observation and eligible actions
 
@@ -38,23 +38,23 @@ These are logical operations. Native libraries may use language-appropriate meth
 | --- | --- |
 | `set_context` | Accept the current observation reference and eligible choices. |
 | `select` | Return a selection or an explicit no-action reason. Selection alone does not add an execution or change history counts. |
-| `begin_execution` | Accept a returned selection and a fresh source-qualified execution reference immediately before invocation. Check context, knowledge revision, and choice; reserve one execution. |
-| `report_execution` | Supply that execution reference and an evidence update containing its recorded status. Pending statuses retain the reservation; completed, failed, or incomplete statuses release it. |
-| `report_not_invoked` | Release the reservation when the operation was never invoked and no execution record was accepted. Require a fresh context before another selection. |
-| `update_evidence` | Accept reconstructed source snapshots and selected runs, preserving existing records. Rebuild selection knowledge when accepted evidence changes. |
+| `begin_execution` | Accept a returned selection and a fresh source-qualified execution reference immediately before invocation. Check context, ASM data revision, and choice; create its action execution context and mark the execution active. |
+| `report_execution` | Supply that execution reference and an evidence update containing its recorded status. Pending statuses keep the execution active; completed, failed, or incomplete statuses allow the next execution. |
+| `report_not_invoked` | Clear the active execution when the operation was never invoked and no execution record was accepted. Require a fresh context before another selection. |
+| `update_evidence` | Accept reconstructed source snapshots and selected runs, preserving existing records. Rebuild state-model data when accepted evidence changes. |
 | `cancel` | Stop further selections and invocations. Final execution/evidence reports remain accepted. |
 
-A reservation holds the chosen operation and its source observation until the integration reports what happened. It is ASM coordination data; execution facts are recorded through the evidence adapter.
+An action execution context retains the selected action, its source observation, and whether invocation occurred. It coordinates execution reporting and remains available afterward to recognize repeated reports. Execution facts are recorded through the evidence adapter.
 
-One execution can be reserved at a time per ASM run. Independent runs can coordinate other executions. Context replacement while a reservation is active returns `execution_in_progress`.
+One execution can be active at a time per ASM run. Independent runs can coordinate other executions. Observation-context replacement while an execution is active returns `execution_in_progress`.
 
-The integration checks readiness and target applicability before beginning. It records the selected action through its evidence adapter and invokes the operation after `begin_execution` succeeds. The ASM library's exploration entry point coordinates these steps through the technology integration.
+The driver checks readiness and target applicability before beginning. It records the selected action through its evidence adapter and invokes the operation after `begin_execution` succeeds. The ASM library's exploration entry point coordinates these steps through the exploration driver.
 
 A call that was invoked and raised an error has an execution error. `report_not_invoked` is for an operation that was never called. It does not fabricate an Evidence Event or turn an execution error into an unexecuted choice.
 
 ## Selection result
 
-A selection contains `result_type: "selected"`, `context_id`, `knowledge_revision`, the original `choice_id`, and `asm_index` (the zero-based configuration entry). Its `reason` is `local_unvisited_action`, `navigate_to_unvisited_actions`, or `random_action`.
+A selection contains `result_type: "selected"`, `context_id`, `asm_data_revision`, the original `choice_id`, and `asm_index` (the zero-based configuration entry). Its `reason` is `local_unvisited_action`, `navigate_to_unvisited_actions`, or `random_action`.
 
 The `rankings` list explains all offered choices: `match`, `eligible`, `count_scope`, `recorded_executions`, `status_counts`, and `supporting_executions`. Here `eligible` means usable by the active ASM's matching policy. Entries are listed by Unicode code-point order of `choice_id`; their order is diagnostic, not a preference for smaller execution counts.
 
@@ -62,27 +62,27 @@ A navigation selection also has `navigation`: `target_state` (a representative o
 
 Unvisited target counts include distinct, unambiguously matched available abstract actions with zero matching executions. Missing availability data supplies no presumed actions. The current state cannot be a navigation target: its actions were already checked against the current eligible choices. When known unvisited actions exist but none can be reached with an eligible first step, the Unvisited ASM returns `no_reachable_unvisited_actions`. When none are known, it returns `no_unvisited_actions`.
 
-`begin_execution` accepts the last returned selection only while its context and knowledge revision still apply. It validates the choice identifier as well. A context replacement, stored history and model change, or consumed selection prevents silently invoking the old selection.
+`begin_execution` accepts the last returned selection only while its context and ASM data revision still apply. It validates the choice identifier as well. A context replacement, state-model data change, or consumed selection prevents silently invoking the old selection.
 
 ### Random choice
 
 Implementations use an unbiased `choose_index(size)` provider returning an integer from zero through `size - 1`. Native APIs can allow the caller to supply that provider. Production defaults use the language's random generator; shared cases supply exact size/index pairs.
 
-Sort executable choices by `choice_id`, target states by representative observation reference, and shortest routes by their ordered transition-reference lists before drawing. Do not draw for a single option. For Unvisited ASM, draw for a local choice, or for a tied target, then a tied shortest route, then matching first-step choices, in that order. Random ASM draws once among all offered choices. Repeated `select` calls reuse the last decision while context, knowledge revision, and controller entry remain unchanged; they consume no further randomness.
+Sort executable choices by `choice_id`, target states by representative observation reference, and shortest routes by their ordered transition-reference lists before drawing. Do not draw for a single option. For Unvisited ASM, draw for a local choice, or for a tied target, then a tied shortest route, then matching first-step choices, in that order. Random ASM draws once among all offered choices. Repeated `select` calls reuse the last decision while context, ASM data revision, and controller entry remain unchanged; they consume no further randomness.
 
 ### No-action results
 
 A no-action result contains `result_type: "no_action"` and one of these reasons, checked in this order:
 
 1. `cancelled`: cancellation was requested.
-2. `execution_in_progress`: a reserved execution is still outstanding.
+2. `execution_in_progress`: an active execution is still outstanding.
 3. `no_context`: a current context has not been supplied or needs refreshing.
 4. `action_limit_reached`: the overall action limit is exhausted.
 5. `no_available_choices`: the current eligible list is empty.
 
 When these preconditions permit selection, the controller tries at most one cycle through the configured entries. With one entry it returns that ASM's reason: `no_comparable_choices`, `no_unvisited_actions`, or `no_reachable_unvisited_actions`. With several entries and no applicable selection it returns `no_applicable_asm`. Results include `asm_index`; an unsuccessful full cycle leaves the starting entry active. Matching exclusions are checked before searching for unvisited actions.
 
-An invoked execution consumes the active entry's limit once, when its first execution record is accepted. It keeps that entry until terminal reporting releases the reservation. On the next selection, a reached entry limit advances to the next entry and resets the new entry's count. `report_not_invoked` consumes neither an entry limit nor the overall limit. The overall limit includes only executions begun through this ASM run, not other incoming historical records.
+An invoked execution consumes the active entry's limit once, when its first execution record is accepted. It keeps that entry until terminal reporting clears the active execution. On the next selection, a reached entry limit advances to the next entry and resets the new entry's count. `report_not_invoked` consumes neither an entry limit nor the overall limit. The overall limit includes only executions begun through this ASM run, not other incoming historical records.
 
 Selections and no-action results include a nonempty human-readable `message`. Shared tests compare structured reasons and rankings; message wording can differ between languages.
 
@@ -105,15 +105,15 @@ Random ASM can select unmatched choices; their counts remain null with no suppor
 
 An update contains an `update_id` unique within the ASM run, reconstructed `sources`, and `selected_runs`. A snapshot is the reader's current collection of reconstructed records for one evidence source. Each supplied source is a full snapshot for that source; omitted sources remain accepted. Selected runs are the complete active selection scope and retain the previously selected runs.
 
-A new source extends knowledge. An existing source can add observations, descriptions, executions, and sequences, and advance execution or run lifecycle records. It retains immutable observation content, description content, and previously recorded execution arguments. An existing result or resulting observation cannot be rewritten. Final execution statuses remain final. Evidence libraries validate these lifecycle changes before the ASM accepts them.
+A new source extends the state-model data. An existing source can add observations, descriptions, executions, and sequences, and advance execution or run lifecycle records. It retains immutable observation content, description content, and previously recorded execution arguments. An existing result or resulting observation cannot be rewritten. Final execution statuses remain final. Evidence libraries validate these lifecycle changes before the ASM accepts them.
 
 Identical source-qualified records count once. A repeated update identifier with equivalent content is a retry. Changed content under the same update identifier is `conflicting_update`. Changed immutable records, removed accepted records within a supplied snapshot, or lifecycle regressions are `conflicting_evidence`. Record collection order and object-property order do not make an equivalent update different; ordered values inside records keep their meaning.
 
-Accepted changes advance `knowledge_revision` by one per update. An identical retry or a fresh update containing already accepted content leaves the revision and counts unchanged. Updating display metadata or a source fingerprint is also an accepted change when the source snapshot remains valid.
+The `asm_data_revision` counter belongs to one ASM run and starts at zero, including when historical traces are loaded. It is returned in ASM responses and is not stored in evidence traces. Accepted changes advance it by one per update. An identical retry or a fresh update containing already accepted content leaves the revision and counts unchanged. Updating display metadata or a source fingerprint is also an accepted change when the source snapshot remains valid.
 
-A new latest observation invalidates a context referring to an older observation. A terminal execution report also retires its context: after an execution error, a caller should reassess the application before trying another action. Merely updating unrelated historical knowledge keeps the current context available, but selections must be recomputed at the new revision.
+A new latest observation invalidates a context referring to an older observation. A terminal execution report also retires its context: after an execution error, a caller should reassess the application before trying another action. Merely updating unrelated historical evidence keeps the current context available, but selections must be recomputed at the new revision.
 
-`report_execution` requires the reserved execution to refer to the selected source observation, action description, target widget, and run. Actual execution parameters remain evidence supplied by the integration. The report can jump directly to a completed record when the adapter already captured the result, or provide successive pending and terminal snapshots. Repeated accepted reports do not add another execution.
+`report_execution` requires the execution identified by its action execution context to refer to the selected source observation, action description, target widget, and run. Actual execution parameters remain evidence supplied by the driver. The report can jump directly to a completed record when the adapter already captured the result, or provide successive pending and terminal snapshots. Repeated accepted reports do not add another execution.
 
 ## Errors and atomicity
 
@@ -128,12 +128,12 @@ A new latest observation invalidates a context referring to an older observation
 | `stale_context` | A retired context identifier is supplied again. |
 | `stale_selection` | The selection's context or revision has been superseded or consumed. |
 | `invalid_selection` | The choice was not the selected current option. |
-| `execution_in_progress` | An operation requires the outstanding reservation to finish first. |
-| `unknown_execution` | A report does not identify an execution reserved by this run. |
-| `execution_reference_reused` | Beginning an execution would reuse an accepted or previously reserved identity. |
+| `execution_in_progress` | An operation requires the active execution to finish first. |
+| `unknown_execution` | A report does not identify an action execution context created by this run. |
+| `execution_reference_reused` | Beginning an execution would reuse an accepted or previously allocated execution identity. |
 | `execution_mismatch` | A reported execution does not belong to its selected observation and binding. |
 | `execution_already_recorded` | A never-invoked report conflicts with an accepted execution record. |
 | `cancelled` | Beginning an execution after cancellation was requested. |
 | `processing_limit` | Abstraction or evidence processing exceeds supported limits. |
 
-Errors include a nonempty message and leave stored history and model, revision, context, reservation, and update identities unchanged. Calls are serialized within one run. Implementations can return native exceptions for errors; conformance runners compare their codes.
+Errors include a nonempty message and leave stored history and model, revision, observation context, action execution contexts, and update identities unchanged. Calls are serialized within one run. Implementations can return native exceptions for errors; conformance runners compare their codes.

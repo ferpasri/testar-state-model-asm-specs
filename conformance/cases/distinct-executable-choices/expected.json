@@ -1,17 +1,17 @@
 {
     "initialization": {
         "result_type": "ready",
-        "knowledge_revision": 0
+        "asm_data_revision": 0
     },
     "responses": [
         {
             "result_type": "context_ready",
-            "knowledge_revision": 0,
+            "asm_data_revision": 0,
             "context_id": "c1"
         },
         {
             "result_type": "selected",
-            "knowledge_revision": 0,
+            "asm_data_revision": 0,
             "context_id": "c1",
             "choice_id": "left",
             "reason": "local_unvisited_action",
@@ -51,7 +51,7 @@
         },
         {
             "result_type": "selected",
-            "knowledge_revision": 0,
+            "asm_data_revision": 0,
             "context_id": "c1",
             "choice_id": "left",
             "reason": "local_unvisited_action",

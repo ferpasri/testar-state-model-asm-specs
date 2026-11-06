@@ -1,17 +1,17 @@
 {
     "initialization": {
         "result_type": "ready",
-        "knowledge_revision": 0
+        "asm_data_revision": 0
     },
     "responses": [
         {
             "result_type": "context_ready",
-            "knowledge_revision": 0,
+            "asm_data_revision": 0,
             "context_id": "c1"
         },
         {
             "result_type": "no_action",
-            "knowledge_revision": 0,
+            "asm_data_revision": 0,
             "context_id": "c1",
             "reason": "no_reachable_unvisited_actions",
             "rankings": [

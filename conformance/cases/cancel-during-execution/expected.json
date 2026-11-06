@@ -1,17 +1,17 @@
 {
     "initialization": {
         "result_type": "ready",
-        "knowledge_revision": 0
+        "asm_data_revision": 0
     },
     "responses": [
         {
             "result_type": "context_ready",
-            "knowledge_revision": 0,
+            "asm_data_revision": 0,
             "context_id": "c1"
         },
         {
             "result_type": "selected",
-            "knowledge_revision": 0,
+            "asm_data_revision": 0,
             "context_id": "c1",
             "choice_id": "choice-1",
             "reason": "local_unvisited_action",
@@ -51,7 +51,7 @@
         },
         {
             "result_type": "execution_started",
-            "knowledge_revision": 0,
+            "asm_data_revision": 0,
             "execution": {
                 "source": "live",
                 "run": "run",
@@ -61,11 +61,11 @@
         },
         {
             "result_type": "cancelled",
-            "knowledge_revision": 0
+            "asm_data_revision": 0
         },
         {
             "result_type": "execution_updated",
-            "knowledge_revision": 1,
+            "asm_data_revision": 1,
             "execution": {
                 "source": "live",
                 "run": "run",
@@ -76,7 +76,7 @@
         },
         {
             "result_type": "no_action",
-            "knowledge_revision": 1,
+            "asm_data_revision": 1,
             "context_id": null,
             "reason": "cancelled",
             "rankings": [],

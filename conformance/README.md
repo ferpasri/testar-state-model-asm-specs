@@ -25,7 +25,7 @@ A `select` step may contain `random_choices`: ordered `{"size": 2, "index": 1}` 
 4. Verify that caller-owned evidence and configuration remain unchanged.
 5. Repeat after reversing source, selected-run, record-collection, and offered-choice order. Preserve semantic order inside records, including widget lists and observation indexes.
 
-Abstraction behavior is verified separately by [Abstraction Specs](https://github.com/ferpasri/testar-abstraction-specs/tree/main/conformance). Native ASM implementations verify these scenarios end to end. Browser readiness, discovery, capture coordination, and physical execution belong to technology integration tests.
+Abstraction behavior is verified separately by [Abstraction Specs](https://github.com/ferpasri/testar-abstraction-specs/tree/main/conformance). Native ASM implementations verify these scenarios end to end. Browser readiness, discovery, capture coordination, and physical execution belong to exploration driver tests.
 
 ## Validate fixture data
 

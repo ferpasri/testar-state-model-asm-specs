@@ -190,7 +190,7 @@
             "operation": "begin_execution",
             "selection": {
                 "context_id": "c1",
-                "knowledge_revision": 0,
+                "asm_data_revision": 0,
                 "choice_id": "choice-1"
             },
             "execution": {

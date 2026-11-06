@@ -157,7 +157,7 @@ def validate_case(name, data, expected, schemas):
             if response["reason"] == "navigate_to_unvisited_actions":
                 require(asm["name"] == "unvisited", name + ": navigation requires Unvisited ASM")
                 check_navigation(name, response, observations, executions)
-            key = (response["context_id"], response["knowledge_revision"], response["asm_index"])
+            key = (response["context_id"], response["asm_data_revision"], response["asm_index"])
             cached = key in cached_selections
             if cached:
                 require(response == cached_selections[key], name + ": repeated selection changed")

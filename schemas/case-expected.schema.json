@@ -11,14 +11,14 @@
                         "result_type": {
                             "const": "ready"
                         },
-                        "knowledge_revision": {
+                        "asm_data_revision": {
                             "type": "integer",
                             "minimum": 0
                         }
                     },
                     "required": [
                         "result_type",
-                        "knowledge_revision"
+                        "asm_data_revision"
                     ],
                     "additionalProperties": false
                 },
@@ -28,7 +28,7 @@
                         "result_type": {
                             "const": "error"
                         },
-                        "knowledge_revision": {
+                        "asm_data_revision": {
                             "type": "integer",
                             "minimum": 0
                         },
@@ -55,7 +55,7 @@
                     },
                     "required": [
                         "result_type",
-                        "knowledge_revision",
+                        "asm_data_revision",
                         "code"
                     ],
                     "additionalProperties": false
@@ -72,14 +72,14 @@
                             "result_type": {
                                 "const": "ready"
                             },
-                            "knowledge_revision": {
+                            "asm_data_revision": {
                                 "type": "integer",
                                 "minimum": 0
                             }
                         },
                         "required": [
                             "result_type",
-                            "knowledge_revision"
+                            "asm_data_revision"
                         ],
                         "additionalProperties": false
                     },
@@ -89,7 +89,7 @@
                             "result_type": {
                                 "const": "error"
                             },
-                            "knowledge_revision": {
+                            "asm_data_revision": {
                                 "type": "integer",
                                 "minimum": 0
                             },
@@ -116,7 +116,7 @@
                         },
                         "required": [
                             "result_type",
-                            "knowledge_revision",
+                            "asm_data_revision",
                             "code"
                         ],
                         "additionalProperties": false
@@ -127,7 +127,7 @@
                             "result_type": {
                                 "const": "context_ready"
                             },
-                            "knowledge_revision": {
+                            "asm_data_revision": {
                                 "type": "integer",
                                 "minimum": 0
                             },
@@ -139,7 +139,7 @@
                         },
                         "required": [
                             "result_type",
-                            "knowledge_revision",
+                            "asm_data_revision",
                             "context_id"
                         ],
                         "additionalProperties": false
@@ -150,7 +150,7 @@
                             "result_type": {
                                 "const": "selected"
                             },
-                            "knowledge_revision": {
+                            "asm_data_revision": {
                                 "type": "integer",
                                 "minimum": 0
                             },
@@ -187,7 +187,7 @@
                         },
                         "required": [
                             "result_type",
-                            "knowledge_revision",
+                            "asm_data_revision",
                             "context_id",
                             "choice_id",
                             "reason",
@@ -225,7 +225,7 @@
                             "result_type": {
                                 "const": "no_action"
                             },
-                            "knowledge_revision": {
+                            "asm_data_revision": {
                                 "type": "integer",
                                 "minimum": 0
                             },
@@ -261,7 +261,7 @@
                         },
                         "required": [
                             "result_type",
-                            "knowledge_revision",
+                            "asm_data_revision",
                             "context_id",
                             "reason",
                             "rankings",
@@ -275,7 +275,7 @@
                             "result_type": {
                                 "const": "execution_started"
                             },
-                            "knowledge_revision": {
+                            "asm_data_revision": {
                                 "type": "integer",
                                 "minimum": 0
                             },
@@ -313,7 +313,7 @@
                         },
                         "required": [
                             "result_type",
-                            "knowledge_revision",
+                            "asm_data_revision",
                             "context_id",
                             "execution"
                         ],
@@ -325,7 +325,7 @@
                             "result_type": {
                                 "const": "execution_not_invoked"
                             },
-                            "knowledge_revision": {
+                            "asm_data_revision": {
                                 "type": "integer",
                                 "minimum": 0
                             },
@@ -358,7 +358,7 @@
                         },
                         "required": [
                             "result_type",
-                            "knowledge_revision",
+                            "asm_data_revision",
                             "execution"
                         ],
                         "additionalProperties": false
@@ -369,7 +369,7 @@
                             "result_type": {
                                 "const": "evidence_updated"
                             },
-                            "knowledge_revision": {
+                            "asm_data_revision": {
                                 "type": "integer",
                                 "minimum": 0
                             },
@@ -379,7 +379,7 @@
                         },
                         "required": [
                             "result_type",
-                            "knowledge_revision",
+                            "asm_data_revision",
                             "changed"
                         ],
                         "additionalProperties": false
@@ -390,7 +390,7 @@
                             "result_type": {
                                 "const": "execution_updated"
                             },
-                            "knowledge_revision": {
+                            "asm_data_revision": {
                                 "type": "integer",
                                 "minimum": 0
                             },
@@ -435,7 +435,7 @@
                         },
                         "required": [
                             "result_type",
-                            "knowledge_revision",
+                            "asm_data_revision",
                             "execution",
                             "status",
                             "changed"
@@ -448,14 +448,14 @@
                             "result_type": {
                                 "const": "cancelled"
                             },
-                            "knowledge_revision": {
+                            "asm_data_revision": {
                                 "type": "integer",
                                 "minimum": 0
                             }
                         },
                         "required": [
                             "result_type",
-                            "knowledge_revision"
+                            "asm_data_revision"
                         ],
                         "additionalProperties": false
                     }

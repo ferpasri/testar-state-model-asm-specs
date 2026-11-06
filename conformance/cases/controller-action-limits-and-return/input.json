@@ -760,7 +760,7 @@
             "operation": "begin_execution",
             "selection": {
                 "context_id": "c1",
-                "knowledge_revision": 0,
+                "asm_data_revision": 0,
                 "choice_id": "choice-1"
             },
             "execution": {
@@ -851,7 +851,7 @@
             "operation": "begin_execution",
             "selection": {
                 "context_id": "c2",
-                "knowledge_revision": 3,
+                "asm_data_revision": 3,
                 "choice_id": "choice-1"
             },
             "execution": {

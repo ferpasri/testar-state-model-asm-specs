@@ -1,22 +1,22 @@
 {
     "initialization": {
         "result_type": "ready",
-        "knowledge_revision": 0
+        "asm_data_revision": 0
     },
     "responses": [
         {
             "result_type": "context_ready",
-            "knowledge_revision": 0,
+            "asm_data_revision": 0,
             "context_id": "c1"
         },
         {
             "result_type": "error",
-            "knowledge_revision": 0,
+            "asm_data_revision": 0,
             "code": "unknown_execution"
         },
         {
             "result_type": "selected",
-            "knowledge_revision": 0,
+            "asm_data_revision": 0,
             "context_id": "c1",
             "choice_id": "choice-1",
             "reason": "local_unvisited_action",

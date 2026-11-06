@@ -2,14 +2,14 @@
 
 ## Shared contract and cases
 
-- [x] Define current observations, available choices, selections, execution reservations, reports, cancellation, and errors.
+- [x] Define current observations, available choices, selections, action execution contexts, reports, cancellation, and errors.
 - [x] Document matching execution records, status counts, and ambiguous or unmatched comparisons.
 - [x] Define source-qualified update identities, retry handling, immutable records, and selection invalidation.
 - [x] Add language-independent schemas and shared cases with expected public results.
 - [x] Record shared compatibility identifiers and the release/conformance process.
 - [x] Validate fixture structure and expected count/reference consistency in CI.
 - [x] Review the abstraction cases for native-language interpretation; remaining portability decisions are tracked in Abstraction Specs.
-- [ ] Verify the ASM scenarios against the first native implementations before those libraries declare compatibility.
+- [x] Verify the ASM scenarios against the first native implementations before those libraries declare compatibility.
 - [ ] Extend cases for additional source/run lifecycle and selection-scope boundaries, processing limits, and complete update conflict combinations.
 
 ## ASMs and exploration control
@@ -30,17 +30,18 @@
 
 ## Native Java and Python libraries
 
-- [ ] Implement the shared operations using the corresponding abstraction and evidence libraries.
-- [ ] Provide an exploration entry point that controls the observe/discover/select/execute/update cycle through technology capabilities, and verify it with shared cycle cases.
-- [ ] Connect accepted current observations and historical sources through the native abstraction APIs.
-- [ ] Retain one accepted knowledge store; avoid unnecessary copies of complete models between components.
-- [ ] Validate snapshot extensions through the evidence library and preserve original input traces.
-- [ ] Download published ASM cases and run the same scenarios in both language libraries.
-- [ ] Verify equivalent decision explanations and unvisited ASM behavior.
-- [ ] Package ordinary Java and Python dependencies and reproducible installations.
+- [x] Implement the shared operations using the corresponding abstraction and evidence libraries.
+- [x] Provide an exploration entry point controlling the observe/discover/select/execute/update cycle through technology capabilities, verified by native cycle tests.
+- [ ] Add shared cases for the complete exploration entry point.
+- [x] Connect accepted current observations and historical sources through the native abstraction APIs.
+- [x] Retain one accepted state-model data store; avoid unnecessary copies of complete models between components.
+- [x] Validate snapshot extensions through the evidence library and preserve original input traces.
+- [x] Download published ASM cases and run the same scenarios in both language libraries.
+- [x] Verify equivalent decision explanations and unvisited ASM behavior.
+- [x] Package ordinary Java and Python dependencies and reproducible installations.
 - [ ] Measure selection and update overhead before choosing incremental model optimizations.
 
-## Technology integrations
+## Exploration drivers
 
 - [ ] Define and document default abstraction rules for each technology and behavior when captured properties are missing.
 - [ ] Implement Playwright observation, action discovery, filtering, and execution capabilities using the existing evidence adapters; connect them to the ASM-controlled exploration entry point.
@@ -53,4 +54,4 @@
 
 - [ ] Add ASMs for other exploration objectives with their own shared behavior and cases.
 - [ ] Evaluate model checkpoints and incremental updates after the first end-to-end integrations.
-- [ ] Add further native languages and technology integrations as needed.
+- [ ] Add further native languages and exploration drivers as needed.

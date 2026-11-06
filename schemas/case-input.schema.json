@@ -165,7 +165,7 @@
                     "minLength": 1,
                     "maxLength": 256
                 },
-                "knowledge_revision": {
+                "asm_data_revision": {
                     "type": "integer",
                     "minimum": 0
                 },
@@ -177,7 +177,7 @@
             },
             "required": [
                 "context_id",
-                "knowledge_revision",
+                "asm_data_revision",
                 "choice_id"
             ],
             "additionalProperties": false

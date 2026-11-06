@@ -1,6 +1,6 @@
 {
     "case_format_version": 1,
-    "asm_contract": 1,
+    "asm_contract": 2,
     "evidence_schema": 3,
     "rule_language": 1,
     "abstraction_behavior": "1.2.0",
@@ -53,7 +53,7 @@
                 "selected-run-scope",
                 "source-state-scope",
                 "stale-context",
-                "stale-knowledge-revision",
+                "stale-asm-data-revision",
                 "unicode-choice-tie",
                 "unknown-execution-report",
                 "unmatched-action",
